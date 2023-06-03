@@ -1,0 +1,93 @@
+Q1. -
+
+class Solution:
+    def Search_Common_Value(self, arr1: list[int], arr2: list[int], arr3: list[int]) -> list[int]:
+        i = 0
+        j = 0
+        k = 0
+        common_value = []
+        while i < len(arr1) and j < len(arr2) and k < len(arr3):
+            if arr1[i] == arr2[j] == arr3[k]:
+                common_value.append(arr1[i])
+                i += 1
+                j += 1
+                k += 1
+            elif arr1[i] < arr2[j]:
+                i += 1
+            elif arr2[j] < arr3[k]:
+                j += 1
+            else:
+                k += 1
+        return common_value
+
+f = Solution()
+print(f.Search_Common_Value())
+
+Q2. - 
+
+class Solution:
+    def Distinct_Value_List(self, arr1: list[int], arr2: list[int]) -> list[list[int]]:
+        list_1 = list(set(arr1).difference(arr2))
+        list_2 = list(set(arr2).difference(arr1))
+        return [list_1, list_2]
+
+f = Solution()
+print(f.Distinct_Value_List())
+
+Q3. - 
+
+class Solution:
+    def Transpose_Matrix(self, matrix: list[list[int]]) -> list[list[int]]:
+        final_matrix = []
+        for i in range(len(matrix)):
+            sub_max = [0] * len(matrix[i])
+            for j in range(len(matrix[i])):
+                sub_max[j] = matrix[j][i]
+            final_matrix.append(sub_max)
+        return final_matrix
+
+f = Solution()
+print(f.Transpose_Matrix())
+
+Q4. -
+
+class Solution:
+    def Maximized_Min_Add(self, arr: list[int]) -> int:
+        arr.sort()
+        j = 0
+        for i in range(0, len(arr), 2):
+            j += min(arr[i], arr[i+1])
+        return j
+
+f = Solution()
+print(f.Maximized_Min_Add())
+
+Q5. -
+
+class Solution:
+    def Complete_Rows(self, n_coin: int) -> int:
+        rows = 0
+        coin_use = 1
+        while n_coin >= coin_use:
+            n_coin -= coin_use
+            rows += 1
+            coin_use += 1
+        return rows
+
+f = Solution()
+print(f.Complete_Rows())
+
+Q6. -
+
+nums = [-4,-1,0,3,10]
+n = [-9,20,21,-4,0]
+
+class Solution:
+    def Shorted_Square(self, arr: list[int]) -> list[int]:
+        for i in range(len(arr)):
+            arr[i] = arr[i] * arr[i]
+        arr.sort()
+        return arr
+
+f = Solution()
+print(f.Shorted_Square())
