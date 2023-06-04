@@ -1,0 +1,84 @@
+Q1. -
+
+class Solution:
+    def Convert_Into_TwoD(self, arr: list[int], m, n) -> list[list[int]]:
+        if m * n != len(arr):
+            return []
+        else:
+            return [arr[x : x + n] for x in range(0, m * n, n)]
+
+
+f = Solution()
+print(f.Convert_Into_TwoD())
+
+Q2. -
+
+class Solution:
+    def Build_Staircase(self, n_coin: int) -> int:
+        row = 0
+        coin_use = 1
+        while coin_use <= n_coin:
+            n_coin -= coin_use
+            row += 1
+            coin_use += 1
+
+        return row
+
+f = Solution()
+print(f.Build_Staircase())
+
+Q3. -
+
+class Solution:
+    def Shorted_Square(self, arr: list[int]) -> list[int]:
+        for i in range(len(arr)):
+            arr[i] = arr[i] * arr[i]
+        arr.sort()
+        return arr
+
+f = Solution()
+print(f.Shorted_Square())
+
+Q4. -
+
+class Solution:
+    def Distinct_Value_List(self, arr1: list[int], arr2: list[int]) -> list[list[int]]:
+        list_1 = list(set(arr1).difference(arr2))
+        list_2 = list(set(arr2).difference(arr1))
+        return [list_1, list_2]
+
+f = Solution()
+print(f.Distinct_Value_List())
+
+Q5. -
+
+class Solution:
+    def Distance_Values(self, arr1: list[int], arr2: list[int], d: int) -> int:
+        count = 0
+        for i in arr1:
+            x = 0
+            for j in arr2:
+                if abs(i - j) <= d:
+                    break
+                x += 1
+            if x == len(arr2):
+                count += 1
+        return count
+
+f = Solution()
+print(f.Distance_Values())
+
+Q6. -
+
+class Solution:
+    def get_duplicate(self, arr: list[int]):
+        l = len(arr)
+        for i in range(l):
+            j = arr[i] % l
+            arr[j] = arr[j] + l
+        for i in range(l):
+            if (arr[i] >= l * 2):
+                print(i)
+
+f = Solution()
+f.get_duplicate()
