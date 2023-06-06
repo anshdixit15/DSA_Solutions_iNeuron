@@ -1,0 +1,159 @@
+Q1. -
+
+class Solution:
+    def Isomorphic_String(self, s1: str, s2: str) -> bool:
+        count = dict()
+        for i in range(len(s1)):
+            if s1[i] in count:
+                c = count[s1[i]]
+                if c!= s2[i]:
+                    return False
+            elif s2[i] not in count.values():
+                count[s1[i]] = s2[i]
+            else:
+                return False
+        return True
+
+
+f = Solution()
+print(f.Isomorphic_String())
+
+Q2. - 
+
+class Solution:
+    def Strobogrammatic(self, s_num: str) -> bool:
+        map = {("0", "0"), ("1", "1"), ("6", "9"), ("8", "8"), ("9", "6")}
+        i = 0
+        j = len(s_num) - 1
+        while j >= i:
+            if (s_num[i], s_num[j]) not in map:
+                return False
+            i += 1
+            j -= 1
+        return True
+
+f = Solution()
+print(f.Strobogrammatic())
+
+
+Q3. - 
+
+class Solution:
+    def Add_String(self, num1: str, num2: str) -> str:
+        result = ""
+        carry = 0
+        if len(num1) < len(num2):
+            while len(num1) != len(num2):
+                num1 = "0" + num1
+        else:
+            while len(num2) != len(num1):
+                num2 = "0" + num2
+        list_num1 = list(num1)
+        list_num2 = list(num2)
+
+        while len(list_num1) != 0:
+            add = int(list_num1.pop()) + int(list_num2.pop()) + int(carry)
+            carry = add // 10
+            result = str(add % 10) + result
+
+        if carry != 0:
+            result = str(carry) + result
+        return result
+
+
+f = Solution()
+print(f.Add_String())
+
+Q4. - 
+
+class Solution:
+    def Reverse_Order(self, sentence: str) -> str:
+
+        s = ""
+        x = 0
+        for i in sentence.split(" "):
+            if x == 0:
+                first = i[::-1]
+                s += first
+            else:
+                s += " "+i[::-1]
+            x += 1
+
+        return f'"{s}"'
+
+
+f = Solution()
+print(f.Reverse_Order("Let's take LeetCode contest"))
+
+Q5. -
+
+class Solution:
+    def Reverse_Till_K(self, s: str, k: int) -> str:
+        s_l = len(s)
+        i = 0
+        while i<len(s):
+            if (i+k) > s_l:
+                break
+            s_block = s[i:i+k]
+            s = s[:i]+s_block[::-1]+s[i+k:]
+            i += 2*k
+        return s
+
+f = Solution()
+print(f.Reverse_Till_K())
+
+
+Q6. -
+
+class Solution:
+    def Matching_Goal(self, s1, s2):
+        size1 = len(s1)
+        size2 = len(s2)
+        temp = ''
+        if size1 != size2:
+            return 0
+        temp = s1 + s1
+        if (temp.count(s2) > 0):
+            return  True
+        else:
+            return False
+
+
+f = Solution()
+print(f.Matching_Goal())
+
+Q7. - 
+
+class Solution:
+    def Check_After_Backspace(self, s: str, t: str) -> bool:
+        def remove_backspace(string):
+            a = []
+            for i in string:
+                if i != "#":
+                    a.append(i)
+                else:
+                    if len(a):
+                        a.pop()
+            return "".join(a)
+        s, t = remove_backspace(s), remove_backspace(t)
+        return s == t
+
+f = Solution()
+print(f.Check_After_Backspace())
+
+Q8. - 
+
+class Solution:
+    def Straight_Coordinates(self, coordinate: list[list[int]]) -> bool:
+        x = 0
+        y = 1
+        co_le = len(coordinate)
+        difference = coordinate[0][y] - coordinate[0][x]
+        count = 0
+        for i in coordinate:
+            if i[y]-i[x] == difference:
+                count += 1
+        return count == co_le
+
+f = Solution()
+print(f.Straight_Coordinates())
