@@ -1,0 +1,102 @@
+Q1. -
+
+def Power_Of_Two(n:int) -> bool:
+    if n == 1:
+        return True
+    elif n % 2 != 0 or n == 0:
+        return False
+
+    return Power_Of_Two(n/2)
+
+
+print(Power_Of_Two())
+
+Q2. - 
+
+def Natural_Number(n):
+    if n <= 1:
+        return n
+
+    return n + Natural_Number(n-1)
+
+print(Natural_Number())
+
+Q3. -
+
+def Factorial(n):
+    if n <= 1:
+        return n
+
+    return n * Factorial(n-1)
+
+print(Factorial())
+
+Q4. -
+
+def Power_Of_Number(n, p):
+    if p <= 1:
+        return n
+
+    return n * Power_Of_Number(n, p-1)
+
+print(Power_Of_Number())
+
+Q5. -
+
+def Find_Maximum(arr):
+    new_arr = list(arr)
+    i = 0
+    m = new_arr[i]
+    def Compare(m, i):
+        if i == len(new_arr)-1:
+            return m
+        if m < new_arr[i]:
+            m = new_arr[i]
+        return Compare(m, i+1)
+    return Compare(m, i)
+
+print(Find_Maximum())
+
+Q6. - 
+
+def Arithmetic_Progression(a, d, n):
+    if n > 0:
+        return (a + (n - 1) * d)
+
+    return Arithmetic_Progression(a, d, n-1)
+
+print(Arithmetic_Progression())
+
+Q7. -
+
+def Permute_String(s, answer = ""):
+
+    def permutationI(s, answer):
+        if len(s) == 0:
+            print(f'"{answer}"', end=" ")
+            return
+
+        for i in range(len(s)):
+            ch = s[i]
+            l_s = s[0:i]
+            r_s = s[i+1:]
+            a_s = l_s + r_s
+            permutationI(a_s, answer + ch)
+    return permutationI(s, answer)
+
+
+Permute_String()
+
+Q8. -
+
+def Find_Product(arr):
+    new_arr = list(arr)
+    i = 0
+    def Multiply(i):
+        if i == len(new_arr)-1:
+            return new_arr[i]
+
+        return new_arr[i] * Multiply(i+1)
+    return Multiply(i)
+
+print(Find_Product(n))
