@@ -1,0 +1,100 @@
+Q1. -
+
+def Power_Of_Three(n):
+    if n <= 0:
+        return False
+    if n % 3 == 0:
+        return Power_Of_Three(n/3)
+    if n == 1:
+        return True
+    return False
+
+print(Power_Of_Three())
+
+Q3. -
+
+def Generate_Subsets(s):
+    ind = -1
+    curr = ""
+    result = set()
+    def Subsets(s, ind, curr):
+        if ind == len(s):
+            return result
+
+        for i in range(ind+1, len(s)):
+            curr += s[i]
+            result.add(curr)
+            Subsets(s, i, curr)
+            curr = curr.replace(curr[len(curr)-1], "")
+
+        return result
+    return Subsets(s, ind, curr)
+
+print(Generate_Subsets())
+
+Q4. -
+
+def Calculate_Length(s):
+    count = 0
+    word = ""
+    def calculate(s, word, count):
+
+        if word == s:
+            return count
+        word += s[count:count+1]
+        return calculate(s, word, count+1)
+    return calculate(s, word, count)
+
+print(Calculate_Length())
+
+Q5. -
+
+def Count_Equal_Ends(s):
+    result = 0
+    i = 0
+    def Ends(s, result, i):
+        if i == len(s):
+            return result
+        for j in range(i, len(s)):
+            if s[i] == s[j]:
+                result = result + 1
+        return Ends(s, result, i+1)
+    return Ends(s, result, i)
+
+print(Count_Equal_Ends())
+
+Q6. -
+
+def Tower_Of_Hanoi(n):
+    first_rod = 1
+    second_rod = 2
+    third_rod = 3
+    def Move(n , first_rod, third_rod, second_rod):
+        if n == 0:
+            return
+
+        Move(n-1, first_rod, second_rod, third_rod)
+        print("Move disk", n, "from rod", first_rod, "to rod", third_rod)
+        Move(n-1, second_rod, third_rod, first_rod)
+
+    return Move(n, first_rod, third_rod, second_rod)
+
+Tower_Of_Hanoi()
+
+Q8. -
+
+def Find_Consonants(s):
+    vowel = {"a", "e", "i", "o", "u", " "}
+    i = 0
+    count = 0
+    def count_con(s, i, count):
+        if i == len(s):
+            return count
+
+        if s[i:i+1:] not in vowel:
+            count += 1
+
+        return  count_con(s, i+1, count)
+    return count_con(s, i, count)
+
+print(Find_Consonants("geeksforgeeks portal"))
